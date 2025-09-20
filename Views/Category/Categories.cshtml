@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewBag.PageTitle = "Каталог";
+}
+
+<h3>Категории товаров</h3>
+<hr />
+
+<ol>
+    @foreach (Category category in Model)
+    {
+        <li>
+            <a asp-controller="Category" asp-action="Category" asp-route-id="@category.Id">
+                @category.Name
+            </a>
+        </li>
+    }
+</ol>

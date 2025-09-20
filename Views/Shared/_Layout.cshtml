@@ -1,0 +1,21 @@
+﻿@{
+    string pageTitle = ViewBag.PageTitle ?? ViewBag.WebsiteName ?? "Без названия";
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/libraries/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/libraries/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+        <title>@pageTitle</title>
+    </head>
+    <body>
+        <partial name="~/Views/Components/NavigationBar.cshtml" />
+        <main class="container-md">
+            @RenderBody()
+        </main>
+        <script src="~/libraries/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
