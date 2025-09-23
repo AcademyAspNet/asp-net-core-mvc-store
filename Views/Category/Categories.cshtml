@@ -11,7 +11,7 @@
     @foreach (Category category in Model)
     {
         <li>
-            <a asp-controller="Category" asp-action="Category" asp-route-id="@category.Id">
+            <a asp-controller="Category" asp-action="ProductsByCategory" asp-route-id="@category.Id">
                 @category.Name
             </a>
         </li>

@@ -7,10 +7,12 @@ namespace Asp_Net_Core_Mvc_Store.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
+        private readonly IProductService _productService;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryService categoryService, IProductService productService)
         {
             _categoryService = categoryService;
+            _productService = productService;
         }
 
         [HttpGet]
@@ -22,15 +24,17 @@ namespace Asp_Net_Core_Mvc_Store.Controllers
         }
 
         [HttpGet]
-        [Route("categories/{id:int:min(0)}")]
-        public IActionResult Category([FromRoute] int id)
+        [Route("categories/{id:int:min(0)}/products")]
+        public IActionResult ProductsByCategory([FromRoute(Name = "id")] int categoryId)
         {
-            Category? category = _categoryService.GetCategoryById(id);
+            Category? category = _categoryService.GetCategoryById(categoryId);
 
             if (category == null)
                 return RedirectToAction(nameof(Categories));
 
-            return Content($"Название выбранной категории: {category.Name}, её идентификатор: {category.Id}");
+            IEnumerable<Product> products = _productService.GetProductsByCategoryId(categoryId);
+
+            return View(products);
         }
     }
 }

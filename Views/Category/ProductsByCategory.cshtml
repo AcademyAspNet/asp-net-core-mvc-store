@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewBag.PageTitle = "Список товаров";
+}
+
+<h3>Список товаров</h3>
+<hr />
+
+<ol>
+    @foreach (Product product in Model)
+    {
+        <li>
+            @product.Name (ID: @product.Id) (Price: @product.Price)
+        </li>
+    }
+</ol>

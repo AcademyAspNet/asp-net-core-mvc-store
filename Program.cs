@@ -12,6 +12,7 @@ namespace Asp_Net_Core_Mvc_Store
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 
