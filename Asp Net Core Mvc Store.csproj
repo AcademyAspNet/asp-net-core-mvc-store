@@ -7,8 +7,4 @@
     <RootNamespace>Asp_Net_Core_Mvc_Store</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
 </Project>
