@@ -42,7 +42,7 @@
                     }
                 </p>
 
-                <span class="btn btn-outline-dark">Стоимость: @Model.Price ₽</span>
+                @Html.CreatePriceBox(Model.Price, "Стоимость")
             </div>
         </div>
     </div>
