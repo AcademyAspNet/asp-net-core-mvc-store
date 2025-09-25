@@ -1,4 +1,5 @@
 ﻿using Asp_Net_Core_Mvc_Store.Models.Entities;
+using Asp_Net_Core_Mvc_Store.Models.ViewModels;
 using Asp_Net_Core_Mvc_Store.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,9 +33,13 @@ namespace Asp_Net_Core_Mvc_Store.Controllers
             if (category == null)
                 return RedirectToAction(nameof(Categories));
 
-            IEnumerable<Product> products = _productService.GetProductsByCategoryId(categoryId);
+            CategoryViewModel model = new CategoryViewModel()
+            {
+                Category = category,
+                Products = _productService.GetProductsByCategoryId(categoryId)
+            };
 
-            return View(products);
+            return View(model);
         }
     }
 }

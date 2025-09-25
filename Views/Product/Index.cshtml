@@ -1,0 +1,49 @@
+﻿@model Product
+
+@using Asp_Net_Core_Mvc_Store.Services
+@inject ICategoryService categoryService
+
+@{
+    ViewBag.PageTitle = Model.Name;
+    IList<Category> productCategories = categoryService.GetCategoriesByIds(Model.Categories);
+}
+
+<a class="link-underline link-underline-opacity-0" asp-controller="Category" asp-action="Categories">
+    <i class="bi bi-caret-left-fill"></i>
+    Вернуться к категориям
+</a>
+<hr />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <img class="img-thumbnail" src="@Model.Image" />
+        </div>
+        <div class="col-8">
+            <div class="container border rounded p-3">
+                <div class="mb-3">
+                    @foreach (Category category in productCategories)
+                    {
+                        <a class="link-underline link-underline-opacity-0" asp-controller="Category" asp-action="ProductsByCategory" asp-route-id="@category.Id">
+                            <span class="badge text-bg-primary">@category.Name</span>
+                        </a>
+                    }
+                </div>
+                <p class="fs-3 fw-bold">@Model.Name</p>
+                <hr />
+                <p>
+                    @if (!string.IsNullOrEmpty(Model.Description))
+                    {
+                        @Model.Description
+                    }
+                    else
+                    {
+                        <i>У данного товара отсутствует описание.</i>
+                    }
+                </p>
+
+                <span class="btn btn-outline-dark">Стоимость: @Model.Price ₽</span>
+            </div>
+        </div>
+    </div>
+</div>

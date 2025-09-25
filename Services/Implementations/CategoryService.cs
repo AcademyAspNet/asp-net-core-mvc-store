@@ -15,6 +15,11 @@ namespace Asp_Net_Core_Mvc_Store.Services.Implementations
             return _categories;
         }
 
+        public IList<Category> GetCategoriesByIds(ICollection<int> categoryIds)
+        {
+            return _categories.Where(c => categoryIds.Contains(c.Id)).ToList();
+        }
+
         public Category? GetCategoryById(int categoryId)
         {
             return _categories.FirstOrDefault(c => c.Id == categoryId);
