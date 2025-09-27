@@ -1,10 +1,12 @@
-﻿using Asp_Net_Core_Mvc_Store.Models.Entities;
+﻿using Asp_Net_Core_Mvc_Store.Filters;
+using Asp_Net_Core_Mvc_Store.Models.Entities;
 using Asp_Net_Core_Mvc_Store.Models.ViewModels;
 using Asp_Net_Core_Mvc_Store.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asp_Net_Core_Mvc_Store.Controllers
 {
+    [TypeFilter(typeof(BenchmarkFilter))]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

@@ -3,13 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Asp_Net_Core_Mvc_Store.Controllers
 {
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
         [HttpGet]
-        [Route("/")]
-        [TypeFilter(typeof(SimpleFilter))]
-        [TypeFilter(typeof(BenchmarkFilter))]
-        [AuthFilter("123")]
+        [Route("admin")]
+        [AuthFilter("qwerty")]
         public IActionResult Index()
         {
             return View();
