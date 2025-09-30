@@ -1,28 +1,30 @@
-﻿using Asp_Net_Core_Mvc_Store.Models.Entities;
+﻿using Asp_Net_Core_Mvc_Store.Data.Entities;
+using Asp_Net_Core_Mvc_Store.Data.Repositories;
 
 namespace Asp_Net_Core_Mvc_Store.Services.Implementations
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IList<Category> _categories = [
-            new Category() { Id = 1, Name = "Категория 1", Image = "/images/templates/cube.png" },
-            new Category() { Id = 2, Name = "Категория 2", Image = "/images/templates/sphere.png" },
-            new Category() { Id = 3, Name = "Категория 3", Image = "/images/templates/cone.png" }
-        ];
+        private readonly IRepository<Category> _categoryRepository;
+
+        public CategoryService(IRepository<Category> categoryRepository)
+        {
+            _categoryRepository = categoryRepository;
+        }
 
         public IEnumerable<Category> GetCategories()
         {
-            return _categories;
+            return _categoryRepository.GetAll();
         }
 
         public IList<Category> GetCategoriesByIds(ICollection<int> categoryIds)
         {
-            return _categories.Where(c => categoryIds.Contains(c.Id)).ToList();
+            return _categoryRepository.GetAll().Where(c => categoryIds.Contains(c.Id)).ToList();
         }
 
         public Category? GetCategoryById(int categoryId)
         {
-            return _categories.FirstOrDefault(c => c.Id == categoryId);
+            return _categoryRepository.GetAll().FirstOrDefault(c => c.Id == categoryId);
         }
     }
 }

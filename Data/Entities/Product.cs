@@ -1,4 +1,4 @@
-﻿namespace Asp_Net_Core_Mvc_Store.Models.Entities
+﻿namespace Asp_Net_Core_Mvc_Store.Data.Entities
 {
     public class Product
     {
