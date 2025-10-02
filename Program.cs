@@ -1,5 +1,6 @@
 using Asp_Net_Core_Mvc_Store.Data.Entities;
 using Asp_Net_Core_Mvc_Store.Data.Repositories;
+using Asp_Net_Core_Mvc_Store.Data.Repositories.Base;
 using Asp_Net_Core_Mvc_Store.Services;
 using Asp_Net_Core_Mvc_Store.Services.Implementations;
 
@@ -14,6 +15,7 @@ namespace Asp_Net_Core_Mvc_Store
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IRepository<Category>, CategoryRepository>();
+            builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
 
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IProductService, ProductService>();

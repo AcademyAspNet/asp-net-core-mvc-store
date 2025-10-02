@@ -1,5 +1,5 @@
 ﻿using Asp_Net_Core_Mvc_Store.Data.Entities;
-using Asp_Net_Core_Mvc_Store.Data.Repositories;
+using Asp_Net_Core_Mvc_Store.Data.Repositories.Base;
 
 namespace Asp_Net_Core_Mvc_Store.Services.Implementations
 {
@@ -24,7 +24,7 @@ namespace Asp_Net_Core_Mvc_Store.Services.Implementations
 
         public Category? GetCategoryById(int categoryId)
         {
-            return _categoryRepository.GetAll().FirstOrDefault(c => c.Id == categoryId);
+            return _categoryRepository.GetById(categoryId);
         }
     }
 }

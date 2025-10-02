@@ -1,8 +1,10 @@
-﻿namespace Asp_Net_Core_Mvc_Store.Data.Repositories
+﻿using Microsoft.Data.SqlClient;
+
+namespace Asp_Net_Core_Mvc_Store.Data.Repositories.Base
 {
     public abstract class Repository<E> : IRepository<E>
     {
-        protected readonly string _connectionString;
+        private readonly string _connectionString;
 
         protected Repository(IConfiguration configuration)
         {
@@ -14,6 +16,12 @@
             _connectionString = connectionString;
         }
 
+        public SqlConnection CreateConnection()
+        {
+            return new SqlConnection(_connectionString);
+        }
+
         public abstract IList<E> GetAll();
+        public abstract E? GetById(int id);
     }
 }
