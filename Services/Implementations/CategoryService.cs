@@ -1,28 +1,26 @@
-﻿using Asp_Net_Core_Mvc_Store.Models.Entities;
+﻿using Asp_Net_Core_Mvc_Store.Data;
+using Asp_Net_Core_Mvc_Store.Data.Entities;
+using System.Collections.Immutable;
 
 namespace Asp_Net_Core_Mvc_Store.Services.Implementations
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IList<Category> _categories = [
-            new Category() { Id = 1, Name = "Категория 1", Image = "/images/templates/cube.png" },
-            new Category() { Id = 2, Name = "Категория 2", Image = "/images/templates/sphere.png" },
-            new Category() { Id = 3, Name = "Категория 3", Image = "/images/templates/cone.png" }
-        ];
+        private readonly ApplicationDbContext _database;
+
+        public CategoryService(ApplicationDbContext database)
+        {
+            _database = database;
+        }
 
         public IEnumerable<Category> GetCategories()
         {
-            return _categories;
-        }
-
-        public IList<Category> GetCategoriesByIds(ICollection<int> categoryIds)
-        {
-            return _categories.Where(c => categoryIds.Contains(c.Id)).ToList();
+            return _database.Categories.ToImmutableList();
         }
 
         public Category? GetCategoryById(int categoryId)
         {
-            return _categories.FirstOrDefault(c => c.Id == categoryId);
+            return _database.Categories.Find(categoryId);
         }
     }
 }

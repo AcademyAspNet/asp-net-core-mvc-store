@@ -1,3 +1,4 @@
+using Asp_Net_Core_Mvc_Store.Data;
 using Asp_Net_Core_Mvc_Store.Services;
 using Asp_Net_Core_Mvc_Store.Services.Implementations;
 
@@ -10,6 +11,8 @@ namespace Asp_Net_Core_Mvc_Store
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<ApplicationDbContext>();
 
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IProductService, ProductService>();

@@ -5,7 +5,6 @@
 
 @{
     ViewBag.PageTitle = Model.Name;
-    IList<Category> productCategories = categoryService.GetCategoriesByIds(Model.Categories);
 }
 
 <a class="link-underline link-underline-opacity-0" asp-controller="Category" asp-action="Categories">
@@ -17,12 +16,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-4">
-            <img class="img-thumbnail" src="@Model.Image" />
+            <img class="img-thumbnail" src="@Model.ImageUrl" />
         </div>
         <div class="col-8">
             <div class="container border rounded p-3">
                 <div class="mb-3">
-                    @foreach (Category category in productCategories)
+                    @foreach (Category category in Model.Categories)
                     {
                         <a class="link-underline link-underline-opacity-0" asp-controller="Category" asp-action="ProductsByCategory" asp-route-id="@category.Id">
                             <span class="badge text-bg-primary">@category.Name</span>
